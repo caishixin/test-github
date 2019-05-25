@@ -9,16 +9,11 @@ export const copyToClipboard = (text) => {
     // 是否支持指定的编辑指令
     const supported = document.queryCommandSupported('copy');
 
-    if (!supported) {
-      return false;
-    }
-
+    if (!supported) return false;
     const input = document.createElement('textarea');
-
     input.value = text;
     input.style.cssText = 'position: absolute; top: -10000px; left: -10000px;';
     document.body.appendChild(input);
-
     input.setAttribute('readonly', ''); // 避免ios弹出键盘
     input.select();
     input.setSelectionRange(0, input.value.length); // 选中文本
